@@ -3,7 +3,7 @@
 *.tfstate
 *.tfstate.*
 *.tfvars
-*.lock.hcl
+*.hcl
 
 # SSH Keys
 *.pem
