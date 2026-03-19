@@ -17,10 +17,11 @@ resource "aws_subnet" "main_subnet" {
     map_public_ip_on_launch = true
 
     tags = {
-      Name= "main-subnet"
+      Name= "public-subnet"
     }
   
 }
+
 
 # internet gateway
 resource "aws_internet_gateway" "main_internet_gateway" {

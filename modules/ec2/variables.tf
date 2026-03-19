@@ -1,6 +1,5 @@
 variable "instance_type" {
 description = "The EC2 instance type"
-default     = "t2.micro"
 }
 variable "ami" {
 description = "The AMI to use for the instance"

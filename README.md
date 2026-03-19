@@ -1,6 +1,6 @@
 # AWS-Infra-With-Terraform 
 
-> Provision a complete AWS infrastructure (VPC + EC2) using modular Terraform.
+> Provision a complete AWS infrastructure (VPC + EC2) using modular Terraform with multi-environment support (dev, staging, prod) and remote backend.
 
 ---
 
@@ -19,6 +19,40 @@
 
 ---
 
+## 🌐 Multi-Environment Setup
+
+This project supports multiple environments using .tfvars:
+
+dev.tfvars → Development environment
+
+staging.tfvars → Staging environment
+
+prod.tfvars → Production environment
+
+Each environment can have:
+
+Different CIDR ranges
+
+Different instance types
+
+Different configurations
+
+## 🗂 Remote Backend (State Management)
+
+Terraform state is stored remotely using:
+
+S3 Bucket → Stores terraform.tfstate
+
+DynamoDB Table → Enables state locking
+
+Benefits:
+
+Prevents state file conflicts
+
+Enables team collaboration
+
+Ensures secure and centralized state management
+
 ## 📂 Project Structure
 
 ```
@@ -30,7 +64,10 @@ terraform-aws-vpc-ec2/
 ├── provider.tf
 ├── variables.tf
 ├── outputs.tf
-├── terraform.tfvars.example
+├── dev.tfvars
+├── staging.tfvars
+├── prod.tfvars
+├── backend.tf
 ├── .gitignore
 └── README.md
 ```
@@ -58,8 +95,11 @@ cp terraform.tfvars.example terraform.tfvars
 
 # 3. Initialize, plan, and apply
 terraform init
-terraform plan
-terraform apply
+# 3. Plan for specific environment
+terraform plan -var-file="dev.tfvars"
+
+# 4. Apply configuration
+terraform apply -var-file="dev.tfvars"
 ```
 
 ---
@@ -67,7 +107,7 @@ terraform apply
 ## 🧹 Cleanup
 
 ```bash
-terraform destroy
+terraform destroy -var-file="dev.tfvars"
 ```
 
 ---

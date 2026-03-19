@@ -3,6 +3,7 @@ output "main_subnet_id" {
   
 }
 
+
 output "security_group_id" {
   description = "ID of the main security group"
   value       = aws_security_group.main_security_group.id
